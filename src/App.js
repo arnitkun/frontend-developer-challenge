@@ -40,7 +40,7 @@ class App extends React.Component{
     return (
       <div className="App" width="100%" height="100%">
       <div className="search-bar" align="left"> 
-        <SearchBar text={this.state.link} onSubmit={this.onGettingLink} onChange={this.handleChange} onLinkSubmission={this.onGettingLink}/>
+        <SearchBar text={this.state.link}  onChange={this.handleChange} onLinkSubmission={this.onGettingLink}/>
       </div>
       {/* prop to link should be the name of the video not the link */}
       <span><Player link={this.state.link}/></span><span><ListItem link={this.state.value} /></span>
