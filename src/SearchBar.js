@@ -1,6 +1,6 @@
 
 const React = require('react')
-const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+
 // import React, {component} from 'react'
  
 class SearchBar extends React.Component {
@@ -28,13 +28,12 @@ class SearchBar extends React.Component {
             <div>
             <form onSubmit={this.handleSubmit}>
             <label>
-                <input type="text" placeholder="Enter the Youtube Link" size="90" onChange={this.handleChange} value={link}/>
+                <input type="text" placeholder="Paste the link here" size="90" onChange={this.handleChange} value={link}/>
                 </label>
-                <input type="submit" value="Get Video"/>
+                {/* <input type="submit" value="Get Video"/> */}
             </form>
             </div>
         );
-
     }
 }
 
