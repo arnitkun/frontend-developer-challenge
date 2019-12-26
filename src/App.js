@@ -17,7 +17,19 @@ class App extends React.Component{
   }
 
   onGettingLink(url){
-        this.setState({link: url});
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const template = "https://youtube.com/embed/";
+
+    const match = url.match(regExp);
+
+          if(match&&match[2].length === 11){
+            // console.log(match[2]);
+            url = template+match[2];
+          } else if(match){
+            console.log("Please enter a valid url link");
+          }
+      console.log(template+match[2]);
+    this.setState({link: url});
   }
 
   handleSubmit(){
@@ -27,26 +39,28 @@ class App extends React.Component{
       if(!(url.startsWith("https://www.youtube.com"))){
           alert("Please enter a valid youtube video link.");    
       }
-      
       console.log("the link passed is: "+url);
-
-
       // this.setState({link: event.target.value});
   }
  
 
   render(){
-    console.log(this.state.link);
+    console.log("The state is : "+this.state.link);
     return (
-      <div className="App" width="100%" height="100%">
-      <div className="search-bar" align="left"> 
-        <SearchBar text={this.state.link}  onChange={this.handleChange} onLinkSubmission={this.onGettingLink}/>
-      </div>
+      <div className="App" >
+        <div className="SearchBar" align="left">
+          <SearchBar text={this.state.link} onLinkSubmission={this.onGettingLink}/>
+        </div>
       {/* prop to link should be the name of the video not the link */}
-      <span><Player link={this.state.link}/></span><span><ListItem link={this.state.value} /></span>
-      
-    </div>
-    
+        <div className="videoWrapper">
+            <div><Player link={this.state.link}/>
+            </div>
+        </div>
+        <div className="Video-List"><ListItem link={this.state.link}/>
+        
+        </div>
+        
+      </div>
   );
     }
 }
